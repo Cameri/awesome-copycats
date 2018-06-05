@@ -35,7 +35,8 @@ theme.taglist_squares_sel                       = theme.dir .. "/icons/square_se
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
 theme.menu_height                               = 16
 theme.menu_width                                = 140
-theme.awesome_icon                              = theme.dir .."/icons/awesome.png"
+theme.arch_linux_icon                           = theme.dir .. "/icons/arch-linux-logo.png"
+theme.awesome_icon                              = theme.dir .. "/icons/awesome.png"
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
 theme.widget_temp                               = theme.dir .. "/icons/temp.png"
 theme.widget_uptime                             = theme.dir .. "/icons/ac.png"
@@ -85,6 +86,9 @@ theme.titlebar_maximized_button_normal_inactive = theme.zenburn_dir.."/titlebar/
 theme.titlebar_maximized_button_focus_inactive  = theme.zenburn_dir.."/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_active   = theme.zenburn_dir.."/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = theme.zenburn_dir.."/titlebar/maximized_focus_active.png"
+
+-- Arch linux logo
+local archlinuxicon = wibox.widget.imagebox(theme.arch_linux_icon)
 
 -- lain related
 theme.layout_txt_termfair                       = "[termfair]"
@@ -193,8 +197,8 @@ local netupinfo = lain.widget.net({
         -- else net_state = "Off" end
 
         -- widget:set_markup(markup.font(theme.font, markup(gray, " Net ") .. net_state .. " "))
-        widget:set_markup(markup.font(theme.font, net_now.sent .. " "))
-        netdowninfo:set_markup(markup.font(theme.font, net_now.received .. " "))
+        widget:set_markup(markup.font(theme.font, net_now.sent))
+        netdowninfo:set_markup(markup.font(theme.font, net_now.received))
     end
 })
 
@@ -225,7 +229,7 @@ local tempicon = wibox.widget.imagebox(theme.widget_temp)
 local temp = lain.widget.temp({
     tempfile = os.getenv("CORETEMP_WIDGET_TEMPFILE") or "/sys/class/thermal/thermal_zone0/temp",
     settings = function()
-        widget:set_markup(markup.font(theme.font, coretemp_now .. "°C "))
+        widget:set_markup(markup.font(theme.font, coretemp_now .. "°C"))
     end
 })
 
@@ -282,7 +286,7 @@ function theme.at_screen_connect(s)
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
-
+            archlinuxicon,
             s.mypromptbox_conf,
             layout = wibox.layout.fixed.horizontal,
             first,
