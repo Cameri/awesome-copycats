@@ -88,7 +88,7 @@ theme.titlebar_maximized_button_normal_active   = theme.zenburn_dir.."/titlebar/
 theme.titlebar_maximized_button_focus_active    = theme.zenburn_dir.."/titlebar/maximized_focus_active.png"
 
 -- Arch linux logo
-local archlinuxicon = wibox.widget.imagebox(theme.arch_linux_icon)
+local archlinuxicon = wibox.container.margin(wibox.widget.imagebox(theme.arch_linux_icon, false), 2, 2, 2, 2)
 
 -- lain related
 theme.layout_txt_termfair                       = "[termfair]"
